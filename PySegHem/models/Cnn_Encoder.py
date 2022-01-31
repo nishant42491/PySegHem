@@ -2,10 +2,9 @@ import torch
 from torch import Tensor
 import torch.nn as nn
 
-import pytorch_lightning as pl
 
 
-class Cnn_Encoder(pl.LightningModule):
+class Cnn_Encoder(nn.Module):
     def __init__(self):
         super().__init__()
         self.seq1 = self._create_block(input_channels=1, output_channels=64, max_pool=False)
