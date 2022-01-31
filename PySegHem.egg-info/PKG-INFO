@@ -1,11 +1,22 @@
 Metadata-Version: 2.1
 Name: PySegHem
-Version: 0.1.0
-Summary: Good Library
-Home-page: UNKNOWN
-Author: Me
+Version: 0.1
+Summary: Good Package
+Home-page: https://github.com/nishant42491/PySegHem.git
+Author: Nishant42491
+Author-email: n.rajadhyaksha@somaiya.edu
 License: MIT
+Download-URL: https://github.com/nishant42491/PySegHem.git/archive/v_01.tar.gz
+Keywords: SOME,MEANINGFULL,KEYWORDS
 Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
 
 UNKNOWN
 

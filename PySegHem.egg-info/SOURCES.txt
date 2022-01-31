@@ -1,7 +1,9 @@
 README.md
+setup.cfg
 setup.py
 PySegHem/__init__.py
 PySegHem.egg-info/PKG-INFO
 PySegHem.egg-info/SOURCES.txt
 PySegHem.egg-info/dependency_links.txt
+PySegHem.egg-info/requires.txt
 PySegHem.egg-info/top_level.txt
