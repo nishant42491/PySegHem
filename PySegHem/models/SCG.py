@@ -69,7 +69,7 @@ class SCG(nn.Module):
 
         A = self.laplacian_matrix(A, self_loop=True)
 
-        z_hat = gama.mean() * mu.reshape(B, self.nodes, self.hidden) * (1. - log_var.reshape(B, self.nodes, self.hidden))
+        z_hat = gama.mean() * mu.reshape(B, self.nodes, self.hidden_ch) * (1. - log_var.reshape(B, self.nodes, self.hidden_ch))
 
         return A, gx.squeeze(1), loss, z_hat
 
