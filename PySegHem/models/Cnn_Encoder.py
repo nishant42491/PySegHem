@@ -59,7 +59,11 @@ class Cnn_Encoder(nn.Module):
 
         out = self.final_conv(concat_output)
 
-        return out
+        return {"output":out,
+                "skip_1":x_after_dropout1,
+                "skip_2":x_after_dropout2,
+                "skip_3":x_after_dropout3,
+                "skip_4":x_after_dropout4}
 
 
 
