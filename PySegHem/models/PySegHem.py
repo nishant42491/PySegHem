@@ -1,9 +1,9 @@
 import torch
 
 import torch.nn as nn
-from Cnn_Encoder import Cnn_Encoder
-from GCN import GCN_Layer
-from SCG import SCG
+from .Cnn_Encoder import Cnn_Encoder
+from .GCN import GCN_Layer
+from .SCG import SCG
 
 
 class PySegHem(nn.Module):
