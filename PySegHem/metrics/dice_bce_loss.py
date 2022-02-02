@@ -1,4 +1,5 @@
 import torch
+import torch.nn.functional as F
 
 
 def Dice_BCE_Loss(inputs, targets, smooth=1):

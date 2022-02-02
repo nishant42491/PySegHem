@@ -1,5 +1,5 @@
 import os
-
+import pickle
 import torch
 import argparse
 import pytorch_lightning as pl
@@ -16,6 +16,46 @@ from metrics.dice_bce_loss import Dice_BCE_Loss
 from metrics.focal_tversky import Tversky_Focal_Loss
 from metrics.iou_accuracy import iou_accuracy
 from metrics.accuracy import accuracy
+
+
+class New_Model(pl.LightningModule):
+    def __init__(self, model_name, l_fn, opt, lrn):
+        super(New_Model, self).__init__()
+        self.model = model_name()
+        self.loss_fn = l_fn
+        self.opt = opt
+        self.lrn = lrn
+
+    def forward(self, x):
+        return self.model(x)
+
+    def training_step(self, batch, batch_idx):
+        x, y = batch
+
+        outs = self(x)
+
+        loss1 = self.loss_fn(outs, y)
+
+        self.log("training monitoring metric", loss1)
+
+        return loss1
+
+    def validation_step(self, batch, batch_idx):
+        x, y = batch
+
+        outs = self(x)
+
+        loss1 = self.loss_fn(outs, y)
+
+        self.log("Validation monitoring metric", loss1)
+
+        return loss1
+
+    def configure_optimizers(self):
+        return self.opt(self.parameters(), lr=self.lrn)
+
+
+
 
 if __name__=='__main__':
     my_parser = argparse.ArgumentParser()
@@ -112,39 +152,7 @@ if __name__=='__main__':
         val_loader = None
 
 
-    class New_Model(pl.LightningModule):
-        def __init__(self):
-            super(New_Model, self).__init__()
-            self.model = curr_model()
-            self.loss_fn = curr_loss_fn
 
-        def forward(self, x):
-            return self.model(x)
-
-        def training_step(self, batch,batch_idx):
-            x, y = batch
-
-            outs = self(x)
-
-            loss1 = self.loss_fn(outs,y)
-
-            self.log("training monitoring metric",loss1)
-
-            return loss1
-
-        def validation_step(self, batch, batch_idx):
-            x, y = batch
-
-            outs = self(x)
-
-            loss1 = self.loss_fn(outs, y)
-
-            self.log("Validation monitoring metric", loss1)
-
-            return loss1
-
-        def configure_optimizers(self):
-            return curr_optim(self.parameters(), lr=configs['learning_rate'])
 
 
     checkpoint_callback = ModelCheckpoint(
@@ -178,8 +186,12 @@ if __name__=='__main__':
             trainer = Trainer(default_root_dir=configs['save_directory'], callbacks=[checkpoint_callback, ],
                               max_epochs=configs['max_epochs'], enable_progress_bar=True, enable_model_summary=True)
 
-    ct_model = New_Model()
-    trainer.fit(ct_model, train_loader, val_loader)
+    ct_model = New_Model(curr_model, curr_loss_fn, curr_optim, configs['learning_rate'])
+    with open(os.path.join(configs['save_directory'],"saved_model.pkl"),'wb') as fobj:
+        pickle.dump(ct_model,fobj)
+        fobj.close()
+
+    trainer.fit(model=ct_model, train_dataloader=train_loader, val_dataloaders=val_loader)
 
 
 
