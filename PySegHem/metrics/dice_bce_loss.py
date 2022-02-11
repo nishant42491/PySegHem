@@ -3,6 +3,15 @@ import torch.nn.functional as F
 
 
 def Dice_BCE_Loss(inputs, targets, smooth=1):
+    """
+    Combines Binary Cross Entropy with Dice Loss Function
+    Args:
+        inputs (tensor): predicted masks
+        targets (tensor): targets masks
+        smooth (int): (default=1)
+    Output:
+        dice bce coefficient (tensor)
+    """
     # comment out if your model contains a sigmoid or equivalent activation layer
     # inputs = F.sigmoid(inputs)
 

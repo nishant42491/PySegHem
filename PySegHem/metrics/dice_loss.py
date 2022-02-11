@@ -2,6 +2,15 @@ import torch
 
 
 def Dice_Loss(inputs, targets, smooth=1):
+    """
+    Computes similarity between two images
+    Args:
+        inputs (tensor): predicted masks
+        targets (tensor): targets masks
+        smooth (int): (default=1)
+    output:
+        dice coefficient (tensor)
+    """
     # comment out if your model contains a sigmoid or equivalent activation layer
     # inputs = F.sigmoid(inputs)
 
