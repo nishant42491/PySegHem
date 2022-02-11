@@ -9,6 +9,19 @@ import numpy as np
 
 
 class Train_Data(Dataset):
+    """
+    classname: Train_Data
+    Parent class: torch.utils.data.Dataset
+    Methods:
+        __len__():
+            Arguments : None
+            Output: length of dataset (int)
+        
+        __getitem__():
+            Arguments:
+                - idx (int): index
+            Output : dataset item (image, mask) at index 'idx'
+    """
     def __init__(self, path_to_data: str, trans=False):
         super().__init__()
         self.image_name_list = os.listdir(os.path.join(path_to_data, "segmented_images"))
