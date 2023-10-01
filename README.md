@@ -32,23 +32,41 @@ Before running the script, ensure you have the following prerequisites:
 The script accepts the following command-line arguments:
 
 --path_to_train_dataset (str, required): Path to the directory containing the training dataset.
+
 --apply_transforms (bool): Apply data augmentation transforms during training (optional).
+
 --train_batch_size (int): Batch size for training.
+
 --mean_for_train_data (float): Mean value used for data normalization during training.
+
 --std_for_train_data (float): Standard deviation used for data normalization during training.
+
 --val_batch_size (int): Batch size for validation.
+
 --mean_for_val_data (float): Mean value used for data normalization during validation.
+
 --std_for_val_data (float): Standard deviation used for data normalization during validation.
+
 --path_to_val_dataset (str): Path to the directory containing the validation dataset.
+
 --name_of_model (str): Name of the segmentation model to be used for training.
+
 --path_for_directory_to_save_weights (str): Path to the directory to save model weights and logs.
+
 --optimizer (str): The optimizer to use for training.
+
 --learning_rate (float): The initial learning rate for the optimizer.
+
 --loss_metric (str): The loss metric used for optimization.
+
 --gpus (bool): Use GPUs for training if available.
+
 --max_epochs (int): Maximum number of training epochs.
+
 --wandb_login_key (str): WandB (Weights and Biases) login key for logging.
+
 --wandb_project_name (str): Name of the WandB project for logging.
+
 --wandb_runs_name (str): Name of the individual training run.
 
 
